@@ -32,7 +32,7 @@ public class Printer {
     public void printTitleOutcome(List<Title> titles) {
         for (int i = 0; i < titles.size(); i++) {
             Title title = titles.get(i);
-            System.out.println(i + 1 + ": " + title.getTitle() + " (id: " + title.getId() + ")");
+            System.out.println(i + 1 + ": " + title.getTitle() + " (id: " + title.getId() + ", imdbScore: " + title.getImdbScore() + ")");
         }
         System.out.println("\n");
     }

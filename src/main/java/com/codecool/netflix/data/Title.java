@@ -4,6 +4,7 @@ import com.codecool.netflix.data.enums.AgeCertification;
 import com.codecool.netflix.data.enums.Type;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Title{
     private String id;
@@ -170,12 +171,12 @@ public class Title{
         Title title1 = (Title) o;
         return Objects.equals(getId(), title1.getId()) && Objects.equals(getTitle(), title1.getTitle()) &&
                 getType() == title1.getType() && Objects.equals(getDescription(), title1.getDescription()) &&
-                Objects.equals(getReleaseYear(), title1.getReleaseYear()) &&
+               Objects.equals(getReleaseYear(), title1.getReleaseYear()) &&
                 getAgeCertification() == title1.getAgeCertification() && Objects.equals(getRunTime(), title1.getRunTime()) &&
-                Objects.equals(getGenres(), title1.getGenres()) && Objects.equals(getProductionCountries(), title1.getProductionCountries()) &&
-                Objects.equals(getSeasons(), title1.getSeasons()) && Objects.equals(getImdbId(), title1.getImdbId()) &&
-                Objects.equals(getImdbScore(), title1.getImdbScore()) && Objects.equals(getImdbVotes(), title1.getImdbVotes()) &&
-                Objects.equals(getTmdbPopularity(), title1.getTmdbPopularity()) && Objects.equals(getTmdbScore(), title1.getTmdbScore());
+               Objects.equals(getGenres(), title1.getGenres()) && Objects.equals(getProductionCountries(), title1.getProductionCountries()) &&
+               Objects.equals(getSeasons(), title1.getSeasons()) && Objects.equals(getImdbId(), title1.getImdbId()) &&
+               Objects.equals(getImdbScore(), title1.getImdbScore()) && Objects.equals(getImdbVotes(), title1.getImdbVotes()) &&
+               Objects.equals(getTmdbPopularity(), title1.getTmdbPopularity()) && Objects.equals(getTmdbScore(), title1.getTmdbScore());
     }
 
     @Override

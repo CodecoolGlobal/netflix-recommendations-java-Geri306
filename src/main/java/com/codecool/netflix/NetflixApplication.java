@@ -8,6 +8,7 @@ import com.codecool.netflix.data.Credit;
 import com.codecool.netflix.data.Title;
 import com.codecool.netflix.data.TitleWithSimilarityScore;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -39,26 +40,11 @@ public class NetflixApplication {
             case 0 -> {
                 return false;
             }
-            case 1 -> {
-                System.out.println("Not implemented yet");
-                //getTopNImdbScoreFromTitles();
-            }
-            case 2 -> {
-                System.out.println("Not implemented yet");
-                //getAllCreditsForTitle();
-            }
-            case 3 -> {
-                System.out.println("Not implemented yet");
-                //getTop5ImdbScoreFromGivenGenre();
-            }
-            case 4 -> {
-                System.out.println("Not implemented yet");
-                //getAllTitlesByCreditName();
-            }
-            case 5 -> {
-                System.out.println("Not implemented yet");
-                //recommendMeSomethingBasedOnAMovie();
-            }
+            case 1 -> getTopNImdbScoreFromTitles();
+            case 2 -> getAllCreditsForTitle();
+            case 3 -> getTopNImdbScoreFromGivenGenre();
+            case 4 -> getAllTitlesByCreditName();
+            case 5 -> recommendMeSomethingBasedOnAMovie();
             default -> System.out.println("Invalid menu item selection!\n");
         }
     return true;
@@ -101,10 +87,14 @@ public class NetflixApplication {
         List<TitleWithSimilarityScore> similarMoviesByTitle = null;
         while (similarMoviesByTitle == null){
             String title = scanner.getUserInput("Type in a name!");
+            Integer length = scanner.getNumericUserInput("Length of the list?");
             try {
-                similarMoviesByTitle = titles.getSimilarMoviesByTitle(title, credits.getCredits());
+                System.out.println("Loading...");
+                similarMoviesByTitle = titles.getSimilarMoviesByTitle(title, credits.getCredits(), length);
             } catch (NoSuchElementException e){
                 System.out.println(e.getMessage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         printer.printSimilarityOutcome(similarMoviesByTitle);

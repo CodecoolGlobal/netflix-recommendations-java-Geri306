@@ -5,8 +5,8 @@ import com.codecool.netflix.data.Title;
 import com.codecool.netflix.logic.reader.CreditReader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CreditManager implements CsvItemCollection {
     private final CreditReader reader;
@@ -22,8 +22,13 @@ public class CreditManager implements CsvItemCollection {
     }
 
     public List<Title> getAllTitlesByCreditName(String name, List<Title> titles) {
-        return new ArrayList<>();
-        //TODO: Your code here
+        List<String> filmIds = credits
+                .stream()
+                .filter(c -> c.getName().equalsIgnoreCase(name))
+                .map(c -> c.getId())
+                .collect(Collectors.toList());
+
+        return titles.stream().filter(t -> filmIds.contains(t.getId())).collect(Collectors.toList());
     }
 
     public List<Credit> getCredits() {
